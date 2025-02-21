@@ -21,29 +21,11 @@
   // Merge Default & User Config
   // -------------------------
   const defaultConfig = {
-    gtm: {
-      id: '',
-      async: true
-    },
-    indexNow: {
-      apiKey: '',
-      submitInterval: 3600
-    },
-    analytics: {
-      enabled: false,
-      dashboard: {
-        position: 'bottom-right',
-        theme: 'dark'
-      }
-    },
-    breadcrumbs: {
-      separator: ' › ',
-      containerClass: 'weeddom-breadcrumbs',
-      linkClass: 'weeddom-link'
-    },
-    scanner: {
-      enabled: true
-    }
+    gtm: { id: '', async: true },
+    indexNow: { apiKey: '', submitInterval: 3600 },
+    analytics: { enabled: false, dashboard: { position: 'bottom-right', theme: 'dark' } },
+    breadcrumbs: { separator: ' › ', containerClass: 'weeddom-breadcrumbs', linkClass: 'weeddom-link' },
+    scanner: { enabled: true }
   };
 
   const config = Object.assign({}, defaultConfig, window.WEEDDOM_CONFIG || {});
@@ -78,14 +60,12 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       const gtmNoScript = document.createElement('noscript');
-      gtmNoScript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=${config.gtm.id}"
-          height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
+      gtmNoScript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=${config.gtm.id}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
       document.body.insertBefore(gtmNoScript, document.body.firstChild);
     });
     integrationStatus.gtmMounted = true;
     console.log('[WeedDOM] GTM mounted:', config.gtm.id);
   };
-
   mountGTM();
 
   // -------------------------
@@ -162,8 +142,6 @@
       if (!hasSitemap) {
         alternativeIndexNowSubmission();
       } else {
-        // In a real-world scenario, you might parse the sitemap.
-        // For demonstration, we use a default URL list.
         const defaultURLs = [
           window.location.href,
           `https://${DOMAIN}/url1`,
@@ -188,14 +166,13 @@
     breadcrumbsContainer.style.fontSize = '14px';
     breadcrumbsContainer.style.marginBottom = '15px';
 
-    let breadcrumbsHTML = '<a href="/" class="' + config.breadcrumbs.linkClass + '">Home</a>';
+    let breadcrumbsHTML = `<a href="/" class="${config.breadcrumbs.linkClass}">Home</a>`;
     let cumulativePath = '';
     pathArray.forEach(segment => {
       cumulativePath += '/' + segment;
       const displayName = segment.replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
       breadcrumbsHTML += ` ${config.breadcrumbs.separator} <a href="${cumulativePath}" class="${config.breadcrumbs.linkClass}">${displayName}</a>`;
     });
-
     breadcrumbsContainer.innerHTML = breadcrumbsHTML;
     document.body.insertBefore(breadcrumbsContainer, document.body.firstChild);
   };
@@ -212,9 +189,7 @@
         try {
           const urlObj = new URL(href);
           externalDomains.add(urlObj.hostname);
-        } catch (e) {
-          // ignore invalid URLs
-        }
+        } catch (e) { /* ignore invalid URLs */ }
       }
     }
     integrationStatus.connectedDomains = Array.from(externalDomains);
@@ -223,7 +198,6 @@
 
   const scanBacklinks = () => {
     console.log('[WeedDOM] Initiating backlinks scan...');
-    // Simulated asynchronous backlinks scan
     setTimeout(() => {
       integrationStatus.backlinksData = {
         totalBacklinks: 1234,
@@ -256,7 +230,6 @@
     dashboardContainer.style.fontSize = '12px';
     dashboardContainer.style.borderTopLeftRadius = '8px';
 
-    // Example dummy metrics; replace with live data as needed.
     const dashboardData = {
       DR: 14,
       UR: 0,
@@ -295,12 +268,10 @@
   // 6. Integration Status Route Renderer
   // -------------------------
   const renderIntegrationStatus = () => {
-    // Clear the page content and render a full-page status report.
     document.body.innerHTML = '';
     const statusContainer = document.createElement('div');
     statusContainer.style.padding = '20px';
     statusContainer.style.fontFamily = 'Arial, sans-serif';
-
     statusContainer.innerHTML = `
       <h1>Integration Status</h1>
       <p><strong>GTM Mounted:</strong> ${integrationStatus.gtmMounted ? 'Yes' : 'No'}</p>
@@ -320,7 +291,6 @@
   window.WeedDOM = {
     gtm: {
       push: (data) => {
-        // Custom event push for GTM (if available)
         if (window.dataLayer && Array.isArray(window.dataLayer)) {
           window.dataLayer.push(data);
           console.log('[WeedDOM] GTM event pushed:', data);
@@ -334,20 +304,17 @@
     },
     analytics: {
       track: (metric, data) => {
-        // Placeholder for custom metric tracking
         console.log(`[WeedDOM] Tracking metric "${metric}":`, data);
       }
     },
     breadcrumbs: {
       configure: (options) => {
-        // Merge custom options into the breadcrumbs config
         Object.assign(config.breadcrumbs, options);
         console.log('[WeedDOM] Breadcrumbs configuration updated:', config.breadcrumbs);
       }
     },
     scanner: {
       analyze: () => {
-        // Returns a Promise with simulated scan results
         return new Promise(resolve => {
           scanConnectedDomains();
           scanBacklinks();
