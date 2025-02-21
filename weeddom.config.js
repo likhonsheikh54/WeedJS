@@ -24,7 +24,7 @@ window.WEEDDOM_CONFIG = {
     enabled: true
   },
   integration: {
-    statusEndpoint: '/integration/status', // Endpoint for integration status
-    scriptURL: 'https://weed-js.vercel.app/WeedDOM.js' // URL to the WeedDOM script
+    statusEndpoint: '/integration/status', // Client-side status route
+    scriptURL: 'https://weed-js.vercel.app/WeedDOM.js' // URL to the WeedDOM script (for reference)
   }
 };
