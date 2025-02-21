@@ -111,3 +111,15 @@ For any questions or support, please reach out via the GitHub Issues page or con
   <h2>🌟 Modern and Colorful WeedJS 🌟</h2>
   <p>Experience the future of web development with WeedJS!</p>
 </div>
+
+---
+
+<div align="center">
+  <h2>🌿 WeedDOM - Advanced Web Integration & Domain Analytics Toolkit 🌿</h2>
+  <p>Version: 1.0.0</p>
+  <p>Repository: <a href="https://github.com/likhonsheikh54/WeedJS">https://github.com/likhonsheikh54/WeedJS</a></p>
+  <p>Author: likhonsheikh54 (GitHub: likhon sheikh)</p>
+  <p>Powered by: <a href="https://t.me/RecentCoders">https://t.me/RecentCoders</a> & <a href="https://www.v4os.org">https://www.v4os.org</a></p>
+  <p>Co-powered by: <a href="https://vortexcybersecurity.org">https://vortexcybersecurity.org</a></p>
+  <p>Description: WeedDOM automatically integrates GTM, handles IndexNow URL submissions, generates dynamic breadcrumbs, and scans connected external domains. Upon successful integration, a centered success loader is displayed using the SVG at: <a href="https://raw.githubusercontent.com/likhonsheikh54/WeedJS/refs/heads/main/DOM/success.svg">success.svg</a></p>
+</div>
