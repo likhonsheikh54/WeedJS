@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Loading Spinner -->
+  <circle cx="100" cy="90" r="35"
+    stroke="#000"
+    stroke-width="4"
+    stroke-dasharray="70"
+    fill="none">
+    <animateTransform
+      attributeName="transform"
+      type="rotate"
+      from="0 100 90"
+      to="360 100 90"
+      dur="1s"
+      repeatCount="2"/>
+    <animate
+      attributeName="opacity"
+      values="1;1;0"
+      dur="2s"
+      keyTimes="0;0.9;1"
+      fill="freeze"/>
+  </circle>
+
+  <!-- Success Checkmark -->
+  <path id="checkmark"
+    stroke="#4CAF50"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+    d="M 75,90 L 95,110 L 125,80"
+    opacity="0"
+    stroke-dasharray="100"
+    stroke-dashoffset="100">
+    <animate
+      attributeName="opacity"
+      values="0;1;1;0"
+      dur="6s"
+      keyTimes="0;0.1;0.8;1"
+      begin="2s"
+      fill="freeze"/>
+    <animate
+      attributeName="stroke-dashoffset"
+      values="100;0;0;100"
+      dur="6s"
+      keyTimes="0;0.2;0.8;1"
+      begin="2s"
+      fill="freeze"/>
+  </path>
+
+  <!-- WeedJS Text -->
+  <text x="100" y="140"
+    text-anchor="middle"
+    font-family="Arial"
+    font-size="16"
+    font-weight="bold"
+    fill="#4CAF50"
+    opacity="0">
+    WeedJS
+    <animate
+      attributeName="opacity"
+      values="0;1;1;0"
+      dur="6s"
+      keyTimes="0;0.1;0.8;1"
+      begin="2.2s"
+      fill="freeze"/>
+  </text>
+
+  <!-- Successfully Connected Text -->
+  <text x="100" y="160"
+    text-anchor="middle"
+    font-family="Arial"
+    font-size="14"
+    fill="#4CAF50"
+    opacity="0">
+    Successfully Connected
+    <animate
+      attributeName="opacity"
+      values="0;1;1;0"
+      dur="6s"
+      keyTimes="0;0.1;0.8;1"
+      begin="2.4s"
+      fill="freeze"/>
+  </text>
+</svg>
