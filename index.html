@@ -3,17 +3,150 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WeedDOM Test Page</title>
-  <!-- Optionally include your CSS -->
+  <title>WeedDOM Advanced Test Page</title>
+  <!-- Optional: Include your CSS for additional styling -->
   <link rel="stylesheet" href="styles.css">
-  <!-- Load the configuration file first -->
-  <script src="weeddom.config.js"></script>
-  <!-- Then load WeedDOM.js -->
-  <script src="WeedDOM.js"></script>
+  <!-- Load WeedDOM.js (hosted at your URL) -->
+  <script src="https://weed-js.vercel.app/WeedDOM.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f0f0;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 40px;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    p {
+      text-align: center;
+      font-size: 16px;
+    }
+    pre {
+      background: #272822;
+      color: #f8f8f2;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+      margin: 10px 0;
+    }
+    .instructions {
+      margin-top: 40px;
+    }
+    .instruction-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      padding: 10px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .instruction-icon {
+      font-size: 28px;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+    .instruction-text {
+      flex-grow: 1;
+    }
+    .copy-btn {
+      background: #007acc;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-left: 10px;
+      align-self: center;
+    }
+    .copy-btn:hover {
+      background: #005fa3;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to WeedDOM Test Page</h1>
-  <p>This page tests the WeedDOM toolkit functionalities.</p>
-  <!-- The script will automatically generate breadcrumbs and (if enabled) the dashboard. -->
+  <div class="container">
+    <h1>Welcome to WeedDOM Advanced Test Page</h1>
+    <p>This page demonstrates the advanced features and usage instructions for WeedDOM.js.</p>
+    
+    <!-- Usage Instructions Section -->
+    <section class="instructions">
+      <h2>How to Use WeedDOM.js</h2>
+      
+      <!-- Step 1: Include the Script -->
+      <div class="instruction-item">
+        <div class="instruction-icon">📄</div>
+        <div class="instruction-text">
+          <strong>Step 1: Include the Script</strong>
+          <p>Add the following line in your HTML <code>&lt;head&gt;</code>:</p>
+          <pre id="script-code">&lt;script src="https://weed-js.vercel.app/WeedDOM.js"&gt;&lt;/script&gt;</pre>
+        </div>
+        <button class="copy-btn" onclick="copyToClipboard('script-code')">Copy</button>
+      </div>
+      
+      <!-- Step 2: Automatic Integrations -->
+      <div class="instruction-item">
+        <div class="instruction-icon">⚙️</div>
+        <div class="instruction-text">
+          <strong>Step 2: Automatic Integrations</strong>
+          <p>
+            WeedDOM.js automatically:
+            <ul>
+              <li>Mounts Google Tag Manager using <code>GTM-PKCRM67D</code>.</li>
+              <li>Submits URLs to the IndexNow API using key <code>eeacba0eddf742ef8de23c43938d4cb1</code>.</li>
+              <li>Generates dynamic breadcrumbs at the top of the page.</li>
+              <li>Scans for connected external domains and simulates backlinks analysis.</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+      
+      <!-- Step 3: Success Loader -->
+      <div class="instruction-item">
+        <div class="instruction-icon">✅</div>
+        <div class="instruction-text">
+          <strong>Step 3: Success Loader</strong>
+          <p>
+            Once all integrations are complete, a centered success loader (using an SVG from GitHub) is automatically displayed.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Step 4: Global API Usage -->
+      <div class="instruction-item">
+        <div class="instruction-icon">🛠️</div>
+        <div class="instruction-text">
+          <strong>Step 4: Global API Usage</strong>
+          <p>
+            WeedDOM.js exposes a global API for further customization. For example, to push a custom GTM event:
+          </p>
+          <pre id="gtm-code">WeedDOM.gtm.push({ event: 'customEvent', action: 'testClick' });</pre>
+        </div>
+        <button class="copy-btn" onclick="copyToClipboard('gtm-code')">Copy</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Copy to Clipboard Functionality
+    function copyToClipboard(elementId) {
+      var copyText = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(copyText).then(function() {
+        alert('Copied to clipboard!');
+      }, function(err) {
+        alert('Failed to copy: ' + err);
+      });
+    }
+  </script>
 </body>
 </html>
