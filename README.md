@@ -8,13 +8,27 @@
   </p>
   
   <p align="center">
+    <a href="#table-of-contents">Table of Contents</a> •
     <a href="#features">Features</a> •
-    <a href="#quick-start">Quick Start</a> •
+    <a href="#installation">Installation</a> •
     <a href="#usage">Usage</a> •
-    <a href="#api">API</a> •
-    <a href="#support">Support</a>
+    <a href="#api-reference">API Reference</a> •
+    <a href="#support">Support</a> •
+    <a href="#contributing">Contributing</a> •
+    <a href="#license">License</a>
   </p>
 </div>
+
+## 📑 Table of Contents
+
+- [Quick Start](#quick-start)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Reference](#api-reference)
+- [Support](#support)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## ⚡ Quick Start
 
@@ -30,6 +44,14 @@
 - 🧭 **Smart Navigation** - Dynamic breadcrumb generation
 - 📱 **Domain Analysis** - Connected domains and backlinks scanning
 - ⚡ **Modern UI** - Sleek success indicators and transitions
+
+## 📥 Installation
+
+To include WeedDOM in your project, add the following script tag to your HTML file:
+
+```html
+<script src="https://weed-js.vercel.app/WeedDOM.js"></script>
+```
 
 ## 💻 Usage
 
@@ -73,6 +95,14 @@ WeedDOM.config.update(newConfig)
 - 📧 [Report Issues](https://github.com/likhonsheikh54/WeedJS/issues)
 - 💬 [Telegram](https://t.me/RecentCoders)
 - 🌐 [Website](https://www.v4os.org)
+
+## 🛠 Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or fixes.
+
+## 📄 License
+
+This project is licensed under the MIT License.
 
 ---
 
