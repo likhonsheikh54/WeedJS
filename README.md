@@ -1,187 +1,113 @@
-# WeedDOM 🌿
+# WeedJS
 
-> Advanced Web Integration & Domain Analytics Toolkit
+![WeedJS Logo](https://raw.githubusercontent.com/likhonsheikh54/WeedJS/refs/heads/main/DOM/IMG_1663.png)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/likhonsheikh54/WeedDOM)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/likhonsheikh54/WeedDOM/pulls)
+**WeedJS** is a powerful JavaScript toolkit designed to streamline web development by integrating essential features like Google Tag Manager, automatic URL submission to IndexNow, and dynamic breadcrumb generation. This toolkit is perfect for developers looking to enhance their web applications effortlessly.
 
-WeedDOM is a powerful, lightweight JavaScript toolkit that seamlessly integrates essential web tools and provides real-time domain analytics. Perfect for modern web applications focusing on SEO and performance monitoring.
+## Features
 
-## ✨ Features
+- **Automatic Google Tag Manager Integration**: Easily mount Google Tag Manager for efficient tracking.
+- **URL Submission to IndexNow**: Automatically submit your site's URLs for quicker indexing.
+- **Dynamic Breadcrumb Generation**: Improve your site's navigation and SEO with automatically generated breadcrumbs.
+- **Success Loader**: Visually confirm successful operations with a centered success loader.
+- **Global API Access**: Customize WeedJS functionality with a global API for tailored solutions.
 
-### 🔄 Core Integrations
-- **Automated GTM Setup**
-  - Zero-config Google Tag Manager integration
-  - Built-in noscript fallback
-  - Asynchronous loading
+## Installation
 
-- **IndexNow API Integration**
-  - Automatic URL submission to search engines
-  - Smart sitemap detection
-  - Fallback to dynamic URL collection
-  - Configurable submission strategies
-
-- **Dynamic Navigation**
-  - Auto-generated SEO breadcrumbs
-  - Semantic HTML structure
-  - Customizable styling options
-
-### 📊 Analytics Dashboard
-- **Domain Metrics**
-  - Real-time domain rating
-  - Backlink analysis
-  - Traffic insights
-  - Keyword rankings
-
-- **External Domain Scanner**
-  - Connected domain detection
-  - Link relationship mapping
-  - Authority metrics
-
-### 🔍 SEO Tools
-- **Status Monitoring**
-  - Integration health checks
-  - Real-time status dashboard
-  - Performance metrics
-  - Error logging
-
-## 🚀 Quick Start
-
-### Installation
-
-Add WeedDOM to your project:
+To incorporate WeedJS into your project, simply include the script in your HTML document as follows:
 
 ```html
-<!-- Place in <head> for optimal performance -->
-<script src="https://cdn.yourdomain.com/weeddom/WeedDOM.js"></script>
+<script src="https://weed-js.vercel.app/WeedDOM.js"></script>
 ```
 
-### Configuration
+## How to Use WeedJS
 
-Create a configuration file (weeddom.config.js):
+### Step 1: Include the Script
+
+Add the following script tag within the `<head>` section of your HTML file:
+
+```html
+<script src="https://weed-js.vercel.app/WeedDOM.js"></script>
+```
+
+### Step 2: Automatic Integrations
+
+Upon loading the script, WeedJS will automatically:
+- Mount Google Tag Manager using the provided ID.
+- Submit your site’s URLs to the IndexNow API.
+- Generate breadcrumbs dynamically based on the page structure.
+
+### Step 3: Display Success Loader
+
+If the integrations are successful, a success loader will be displayed automatically at the center of your webpage. This loader is sourced from:
+
+```
+https://raw.githubusercontent.com/likhonsheikh54/WeedJS/refs/heads/main/DOM/success.svg
+```
+
+The success loader will hide automatically after a few seconds, providing a seamless user experience.
+
+## Example Usage
+
+Below is an example of a simple HTML page using WeedJS:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WeedJS Test Page</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://weed-js.vercel.app/WeedDOM.js"></script>
+</head>
+<body>
+  <h1>Welcome to WeedJS Test Page</h1>
+  <p>This page demonstrates WeedJS functionality.</p>
+</body>
+</html>
+```
+
+## Why Use WeedJS?
+
+WeedJS simplifies the integration of essential web functionalities, allowing developers to focus more on building features rather than dealing with repetitive setup tasks. The automatic URL submission and breadcrumb generation enhance SEO and user experience, making it a valuable tool for modern web development.
+
+## API Reference
+
+WeedJS exposes a global API for further customization. For example, you can push custom events to Google Tag Manager as follows:
 
 ```javascript
-window.WEEDDOM_CONFIG = {
-  gtm: {
-    id: 'GTM-XXXXXXX',
-    async: true
-  },
-  indexNow: {
-    apiKey: 'your-indexnow-key',
-    submitInterval: 3600 // seconds
-  },
-  analytics: {
-    enabled: true,
-    dashboard: {
-      position: 'bottom-right',
-      theme: 'dark'
-    }
-  }
-};
+WeedDOM.gtm.push({ event: 'customEvent', action: 'testClick' });
 ```
 
-### Verification
+### Loader Control
 
-1. Visit your website's `/integration/status` route
-2. Check the browser console for initialization logs
-3. Verify the dashboard appears in your specified position
-
-## 📖 Documentation
-
-### GTM Integration
+You can manually show or hide the success loader using:
 
 ```javascript
-// Custom GTM events
-WeedDOM.gtm.push({
-  event: 'customEvent',
-  eventCategory: 'User',
-  eventAction: 'Click'
-});
+WeedDOM.showLoader();  // To show the loader
+WeedDOM.hideLoader();  // To hide the loader
 ```
 
-### IndexNow API
+## Contributing
 
-```javascript
-// Manual URL submission
-WeedDOM.indexNow.submit([
-  'https://yourdomain.com/new-page',
-  'https://yourdomain.com/updated-page'
-]);
-```
+Contributions are welcome! If you have suggestions or improvements, feel free to submit a pull request or open an issue on the GitHub repository.
 
-### Analytics Dashboard
+## License
 
-```javascript
-// Custom metric tracking
-WeedDOM.analytics.track('customMetric', {
-  value: 100,
-  label: 'New Users'
-});
-```
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-## 🛠 Advanced Usage
-
-### Custom Breadcrumbs
-
-```javascript
-WeedDOM.breadcrumbs.configure({
-  separator: '›',
-  containerClass: 'custom-breadcrumbs',
-  linkClass: 'custom-link'
-});
-```
-
-### Domain Scanner
-
-```javascript
-WeedDOM.scanner.analyze().then(results => {
-  console.log('Connected domains:', results.domains);
-  console.log('Backlinks:', results.backlinks);
-});
-```
-
-## 🤝 Contributing
-
-We welcome contributions! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-### Development Setup
-
-```bash
-git clone https://github.com/yourusername/WeedDOM.git
-cd WeedDOM
-npm install
-npm run dev
-```
-
-## 📄 License
-
-MIT License - see [LICENSE](LICENSE) file for details
-
-## 👥 Team
-
-- **Lead Developer**: Likhon Sheikh ([@likhonsheikh54](https://github.com/likhonsheikh54))
-- **Core Contributors**: 
-  - RecentCoders Team
-  - v4os.org Team
-  - Vortex Cybersecurity Team
-
-## 🤝 Support
-
-- **Issues**: [GitHub Issues](https://github.com/likhonsheikh54/WeedDOM/issues)
-- **Email**: support@weeddom.dev
-- **Discord**: [Join our community](https://discord.gg/weeddom)
-
-## 🌟 Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=likhonsheikh54/WeedDOM&type=Date)](https://star-history.com/#likhonsheikh54/WeedDOM&Date)
+For any questions or support, please reach out via the GitHub Issues page or contact me directly.
 
 ---
 
-<p align="center">Made with ❤️ by the WeedDOM Team</p>
+<div align="center">
+  <img src="https://star-history.com/#likhonsheikh54/WeedDOM&Date" alt="Star History">
+</div>
+
+---
+
+<div align="center">
+  <h2>🌟 Modern and Colorful WeedJS 🌟</h2>
+  <p>Experience the future of web development with WeedJS!</p>
+</div>
