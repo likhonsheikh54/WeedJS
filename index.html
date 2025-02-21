@@ -1,152 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WeedDOM Advanced Test Page</title>
-  <!-- Optional: Include your CSS for additional styling -->
-  <link rel="stylesheet" href="styles.css">
-  <!-- Load WeedDOM.js (hosted at your URL) -->
-  <script src="https://weed-js.vercel.app/WeedDOM.js"></script>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f0f0f0;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 40px;
-      background: #fff;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      border-radius: 8px;
-    }
-    h1, h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    p {
-      text-align: center;
-      font-size: 16px;
-    }
-    pre {
-      background: #272822;
-      color: #f8f8f2;
-      padding: 10px;
-      border-radius: 4px;
-      overflow-x: auto;
-      margin: 10px 0;
-    }
-    .instructions {
-      margin-top: 40px;
-    }
-    .instruction-item {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 20px;
-      padding: 10px;
-      border-bottom: 1px solid #e0e0e0;
-    }
-    .instruction-icon {
-      font-size: 28px;
-      margin-right: 15px;
-      flex-shrink: 0;
-    }
-    .instruction-text {
-      flex-grow: 1;
-    }
-    .copy-btn {
-      background: #007acc;
-      color: #fff;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-      margin-left: 10px;
-      align-self: center;
-    }
-    .copy-btn:hover {
-      background: #005fa3;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeedDOM - Web Integration Toolkit</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/likhonsheikh54/WeedJS/refs/heads/main/DOM/IMG_1663.png">
+    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/likhonsheikh54/WeedJS/refs/heads/main/DOM/IMG_1663.png">
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Advanced Web Integration & Domain Analytics Toolkit">
+    <meta name="keywords" content="WeedDOM, Web Integration, GTM, IndexNow, Domain Analytics">
+    <meta name="author" content="likhonsheikh54">
+    
+    <style>
+        :root {
+            --primary: #4CAF50;
+            --hover: #45a049;
+            --bg: #f5f5f5;
+            --text: #333;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            color: var(--text);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            margin: 1rem 0;
+            color: var(--primary);
+        }
+        
+        .demo-section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .button {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+        }
+        
+        .button:hover {
+            background: var(--hover);
+        }
+        
+        .code-block {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+    
+    <!-- WeedDOM Script -->
+    <script src="WeedDOM.js"></script>
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome to WeedDOM Advanced Test Page</h1>
-    <p>This page demonstrates the advanced features and usage instructions for WeedDOM.js.</p>
-    
-    <!-- Usage Instructions Section -->
-    <section class="instructions">
-      <h2>How to Use WeedDOM.js</h2>
-      
-      <!-- Step 1: Include the Script -->
-      <div class="instruction-item">
-        <div class="instruction-icon">📄</div>
-        <div class="instruction-text">
-          <strong>Step 1: Include the Script</strong>
-          <p>Add the following line in your HTML <code>&lt;head&gt;</code>:</p>
-          <pre id="script-code">&lt;script src="https://weed-js.vercel.app/WeedDOM.js"&gt;&lt;/script&gt;</pre>
-        </div>
-        <button class="copy-btn" onclick="copyToClipboard('script-code')">Copy</button>
-      </div>
-      
-      <!-- Step 2: Automatic Integrations -->
-      <div class="instruction-item">
-        <div class="instruction-icon">⚙️</div>
-        <div class="instruction-text">
-          <strong>Step 2: Automatic Integrations</strong>
-          <p>
-            WeedDOM.js automatically:
-            <ul>
-              <li>Mounts Google Tag Manager using <code>GTM-PKCRM67D</code>.</li>
-              <li>Submits URLs to the IndexNow API using key <code>eeacba0eddf742ef8de23c43938d4cb1</code>.</li>
-              <li>Generates dynamic breadcrumbs at the top of the page.</li>
-              <li>Scans for connected external domains and simulates backlinks analysis.</li>
-            </ul>
-          </p>
-        </div>
-      </div>
-      
-      <!-- Step 3: Success Loader -->
-      <div class="instruction-item">
-        <div class="instruction-icon">✅</div>
-        <div class="instruction-text">
-          <strong>Step 3: Success Loader</strong>
-          <p>
-            Once all integrations are complete, a centered success loader (using an SVG from GitHub) is automatically displayed.
-          </p>
-        </div>
-      </div>
-      
-      <!-- Step 4: Global API Usage -->
-      <div class="instruction-item">
-        <div class="instruction-icon">🛠️</div>
-        <div class="instruction-text">
-          <strong>Step 4: Global API Usage</strong>
-          <p>
-            WeedDOM.js exposes a global API for further customization. For example, to push a custom GTM event:
-          </p>
-          <pre id="gtm-code">WeedDOM.gtm.push({ event: 'customEvent', action: 'testClick' });</pre>
-        </div>
-        <button class="copy-btn" onclick="copyToClipboard('gtm-code')">Copy</button>
-      </div>
-    </section>
-  </div>
-
-  <script>
-    // Copy to Clipboard Functionality
-    function copyToClipboard(elementId) {
-      var copyText = document.getElementById(elementId).innerText;
-      navigator.clipboard.writeText(copyText).then(function() {
-        alert('Copied to clipboard!');
-      }, function(err) {
-        alert('Failed to copy: ' + err);
-      });
-    }
-  </script>
+    <div class="container">
+        <header class="header">
+            <img src="https://raw.githubusercontent.com/likhonsheikh54/WeedJS/refs/heads/main/DOM/IMG_1663.png" 
+                 alt="WeedDOM Logo" 
+                 class="logo">
+            <h1 class="title">🌿 WeedDOM</h1>
+            <p>Advanced Web Integration & Domain Analytics Toolkit</p>
+        </header>
+        
+        <main>
+            <section class="demo-section">
+                <h2>GTM Integration</h2>
+                <button class="button" onclick="WeedDOM.gtm.push({event: 'demo_click'})">
+                    Test GTM Event
+                </button>
+            </section>
+            
+            <section class="demo-section">
+                <h2>Domain Scanner</h2>
+                <button class="button" onclick="WeedDOM.scanner.analyze().then(data => console.log('Scan Results:', data))">
+                    Scan Domains
+                </button>
+            </section>
+            
+            <section class="demo-section">
+                <h2>Session Management</h2>
+                <button class="button" onclick="WeedDOM.session.reset()">
+                    Reset Session
+                </button>
+            </section>
+            
+            <section class="demo-section">
+                <h2>Quick Example</h2>
+                <div class="code-block">
+                    <pre><code>// Initialize Scanner
+WeedDOM.scanner.analyze()
+  .then(results => {
+    console.log('Connected Domains:', results.domains);
+    console.log('Backlinks:', results.backlinks);
+  });</code></pre>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="footer">
+            <p>Created by <a href="https://github.com/likhonsheikh54">likhonsheikh54</a></p>
+            <p>
+                <a href="https://t.me/RecentCoders">Telegram</a> •
+                <a href="https://www.v4os.org">Website</a> •
+                <a href="https://github.com/likhonsheikh54/WeedJS">GitHub</a>
+            </p>
+        </footer>
+    </div>
 </body>
 </html>
