@@ -9,30 +9,26 @@
  *
  * Description:
  *  WeedDOM automatically integrates GTM, handles IndexNow URL submissions,
- *  generates dynamic breadcrumbs, scans connected external domains, simulates
- *  backlinks analysis, and provides a client-side integration status dashboard
- *  accessible at the `/integration/status` route.
+ *  generates dynamic breadcrumbs, and scans connected external domains.
+ *  Upon successful integration, a centered success loader is displayed
+ *  using the SVG at:
+ *  https://raw.githubusercontent.com/likhonsheikh54/WeedJS/refs/heads/main/DOM/success.svg
  */
 
 (() => {
   'use strict';
 
   // -------------------------
-  // Merge Default & User Config
+  // Inline Configuration
   // -------------------------
-  const defaultConfig = {
-    gtm: { id: '', async: true },
-    indexNow: { apiKey: '', submitInterval: 3600 },
-    analytics: { enabled: false, dashboard: { position: 'bottom-right', theme: 'dark' } },
+  const config = {
+    gtm: { id: 'GTM-PKCRM67D', async: true },
+    indexNow: { apiKey: 'eeacba0eddf742ef8de23c43938d4cb1', submitInterval: 3600 },
     breadcrumbs: { separator: ' › ', containerClass: 'weeddom-breadcrumbs', linkClass: 'weeddom-link' },
     scanner: { enabled: true }
   };
 
-  const config = Object.assign({}, defaultConfig, window.WEEDDOM_CONFIG || {});
-
-  // -------------------------
-  // Global Integration Status
-  // -------------------------
+  // Global integration status (for internal use)
   const integrationStatus = {
     gtmMounted: false,
     sitemapFound: false,
@@ -142,6 +138,7 @@
       if (!hasSitemap) {
         alternativeIndexNowSubmission();
       } else {
+        // For demonstration, using a default URL list.
         const defaultURLs = [
           window.location.href,
           `https://${DOMAIN}/url1`,
@@ -170,12 +167,15 @@
     let cumulativePath = '';
     pathArray.forEach(segment => {
       cumulativePath += '/' + segment;
-      const displayName = segment.replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      const displayName = decodeURIComponent(segment)
+        .replace(/[-_]/g, ' ')
+        .replace(/\b\w/g, c => c.toUpperCase());
       breadcrumbsHTML += ` ${config.breadcrumbs.separator} <a href="${cumulativePath}" class="${config.breadcrumbs.linkClass}">${displayName}</a>`;
     });
     breadcrumbsContainer.innerHTML = breadcrumbsHTML;
     document.body.insertBefore(breadcrumbsContainer, document.body.firstChild);
   };
+  generateBreadcrumbs();
 
   // -------------------------
   // 4. External Domain & Backlinks Scanner (Simulated)
@@ -198,6 +198,7 @@
 
   const scanBacklinks = () => {
     console.log('[WeedDOM] Initiating backlinks scan...');
+    // Simulated asynchronous backlinks scan
     setTimeout(() => {
       integrationStatus.backlinksData = {
         totalBacklinks: 1234,
@@ -210,83 +211,61 @@
       console.log('[WeedDOM] Backlinks data:', integrationStatus.backlinksData);
     }, 2000);
   };
+  scanConnectedDomains();
+  scanBacklinks();
 
   // -------------------------
-  // 5. Analytics Dashboard Rendering (Optional)
+  // 5. Success Loader Display
   // -------------------------
-  const renderDashboard = () => {
-    if (!config.analytics.enabled) return;
-    const dashboardContainer = document.createElement('div');
-    dashboardContainer.id = 'weeddom-dashboard';
-    dashboardContainer.style.position = 'fixed';
-    dashboardContainer.style.bottom = '0';
-    dashboardContainer.style.right = '0';
-    dashboardContainer.style.backgroundColor = config.analytics.dashboard.theme === 'dark' ? 'rgba(0,0,0,0.8)' : '#fff';
-    dashboardContainer.style.color = config.analytics.dashboard.theme === 'dark' ? '#fff' : '#000';
-    dashboardContainer.style.padding = '15px';
-    dashboardContainer.style.zIndex = '1000';
-    dashboardContainer.style.fontFamily = 'Arial, sans-serif';
-    dashboardContainer.style.maxWidth = '300px';
-    dashboardContainer.style.fontSize = '12px';
-    dashboardContainer.style.borderTopLeftRadius = '8px';
+  const showSuccessLoader = () => {
+    // Create overlay element
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    overlay.style.display = 'flex';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.style.zIndex = 9999;
+    overlay.style.transition = 'opacity 0.5s ease';
 
-    const dashboardData = {
-      DR: 14,
-      UR: 0,
-      AR: '16,920,674 Backlinks',
-      Backlinks: 0,
-      RefDomains: 0,
-      OrganicKeywords: 0,
-      Top3Traffic: 0,
-      OrganicTraffic: 0,
-      PaidKeywords: 0,
-      PaidTraffic: 0
-    };
+    // Create success image element
+    const successImg = document.createElement('img');
+    successImg.src = 'https://raw.githubusercontent.com/likhonsheikh54/WeedJS/refs/heads/main/DOM/success.svg';
+    successImg.alt = 'Integration Success';
+    successImg.style.maxWidth = '200px';
+    successImg.style.maxHeight = '200px';
 
-    dashboardContainer.innerHTML = `
-      <h4 style="margin:0 0 10px 0;">Domain Overview</h4>
-      <ul style="list-style: none; padding:0; margin:0;">
-          <li><strong>DR:</strong> ${dashboardData.DR}</li>
-          <li><strong>UR:</strong> ${dashboardData.UR}</li>
-          <li><strong>AR:</strong> ${dashboardData.AR}</li>
-          <li><strong>Backlinks:</strong> ${dashboardData.Backlinks}</li>
-          <li><strong>Ref. Domains:</strong> ${dashboardData.RefDomains}</li>
-          <li><strong>Organic Keywords:</strong> ${dashboardData.OrganicKeywords}</li>
-          <li><strong>Top 3 Traffic:</strong> ${dashboardData.Top3Traffic}</li>
-          <li><strong>Organic Traffic:</strong> ${dashboardData.OrganicTraffic}</li>
-          <li><strong>Paid Keywords:</strong> ${dashboardData.PaidKeywords}</li>
-          <li><strong>Paid Traffic:</strong> ${dashboardData.PaidTraffic}</li>
-      </ul>
-      <div style="margin-top:10px; font-size:10px;">
-        Data compiled from crawled data and backlink profiles.
-      </div>
-    `;
-    document.body.appendChild(dashboardContainer);
+    overlay.appendChild(successImg);
+    document.body.appendChild(overlay);
+
+    // After 2 seconds, fade out and remove the overlay
+    setTimeout(() => {
+      overlay.style.opacity = 0;
+      setTimeout(() => {
+        if (overlay && overlay.parentNode) {
+          overlay.parentNode.removeChild(overlay);
+        }
+      }, 500);
+    }, 2000);
   };
 
   // -------------------------
-  // 6. Integration Status Route Renderer
+  // 6. Finalize Integration
   // -------------------------
-  const renderIntegrationStatus = () => {
-    document.body.innerHTML = '';
-    const statusContainer = document.createElement('div');
-    statusContainer.style.padding = '20px';
-    statusContainer.style.fontFamily = 'Arial, sans-serif';
-    statusContainer.innerHTML = `
-      <h1>Integration Status</h1>
-      <p><strong>GTM Mounted:</strong> ${integrationStatus.gtmMounted ? 'Yes' : 'No'}</p>
-      <p><strong>Sitemap Found:</strong> ${integrationStatus.sitemapFound ? 'Yes' : 'No'}</p>
-      <p><strong>IndexNow Submission:</strong> ${integrationStatus.indexNowSubmission}</p>
-      <p><strong>Connected External Domains:</strong> ${integrationStatus.connectedDomains.length > 0 ? integrationStatus.connectedDomains.join(', ') : 'None'}</p>
-      <p><strong>Backlinks Data:</strong> ${integrationStatus.backlinksData ? JSON.stringify(integrationStatus.backlinksData) : 'Not available'}</p>
-      <hr>
-      <p><a href="/">Return Home</a></p>
-    `;
-    document.body.appendChild(statusContainer);
+  const finalizeIntegration = () => {
+    enhancedIndexNowSubmission();
+    // After a delay (simulate integration completion), show success loader
+    setTimeout(showSuccessLoader, 3000);
   };
 
+  document.addEventListener('DOMContentLoaded', finalizeIntegration);
+
   // -------------------------
-  // 7. Global API Exposure
+  // Global API Exposure (optional)
   // -------------------------
   window.WeedDOM = {
     gtm: {
@@ -301,17 +280,6 @@
     },
     indexNow: {
       submit: (urls) => submitIndexNow(urls)
-    },
-    analytics: {
-      track: (metric, data) => {
-        console.log(`[WeedDOM] Tracking metric "${metric}":`, data);
-      }
-    },
-    breadcrumbs: {
-      configure: (options) => {
-        Object.assign(config.breadcrumbs, options);
-        console.log('[WeedDOM] Breadcrumbs configuration updated:', config.breadcrumbs);
-      }
     },
     scanner: {
       analyze: () => {
@@ -328,20 +296,4 @@
       }
     }
   };
-
-  // -------------------------
-  // 8. Initialize on DOM Ready
-  // -------------------------
-  document.addEventListener('DOMContentLoaded', () => {
-    // If the URL path is "/integration/status", render the status dashboard.
-    if (window.location.pathname === '/integration/status') {
-      renderIntegrationStatus();
-      return;
-    }
-    generateBreadcrumbs();
-    renderDashboard();
-    scanConnectedDomains();
-    scanBacklinks();
-    enhancedIndexNowSubmission();
-  });
 })();
